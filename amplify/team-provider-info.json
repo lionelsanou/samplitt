@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "restauranttasting-dev-20191023215321-authRole",
+            "UnauthRoleArn": "arn:aws:iam::792615289216:role/restauranttasting-dev-20191023215321-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::792615289216:role/restauranttasting-dev-20191023215321-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "restauranttasting-dev-20191023215321-deployment",
+            "UnauthRoleName": "restauranttasting-dev-20191023215321-unauthRole",
+            "StackName": "restauranttasting-dev-20191023215321",
+            "StackId": "arn:aws:cloudformation:us-east-1:792615289216:stack/restauranttasting-dev-20191023215321/0f0d7090-f601-11e9-9e92-1230783fe8ac"
+        },
+        "categories": {
+            "auth": {
+                "restauranttastingcc7f0f1e": {}
+            }
+        }
+    }
+}

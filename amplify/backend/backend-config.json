@@ -1,0 +1,32 @@
+{
+	"auth": {
+		"restauranttastingcc7f0f1e": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"restauranttasting": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authrestauranttastingcc7f0f1e"
+						}
+					}
+				}
+			}
+		}
+	},
+	"storage": {
+		"s3f71c0897": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}
