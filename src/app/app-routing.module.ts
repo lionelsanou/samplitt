@@ -5,10 +5,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { RestaurantListingComponent } from './restaurant-listing/restaurant-listing.component';
 import { MapviewComponent } from './mapview/mapview.component';
 import {AuthGuard} from './auth.guard';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
+  {path:'userprofile',component:UserProfileComponent,canActivate:[AuthGuard]},
   {path:'restaulist',component:RestaurantListingComponent},
   {path:'mapview',component:MapviewComponent},
   {path:'**',redirectTo:'restaulist',pathMatch:'full'}

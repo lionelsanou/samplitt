@@ -27,8 +27,19 @@
                         </li>
                     </div>
                     <div *ngIf="userIsLoggedIn">
+                      
+                      
                         <li class="nav-item active">
-                          <a class="nav-link" routerLink="" (click)="logout()">Logout</a>
+            
+                          <a class="nav-link" routerLink="/userprofile">Profile</a>
+                        </li>
+                    </div>
+                    <div *ngIf="userIsLoggedIn">
+                      
+                      
+                        <li class="nav-item active">
+            
+                          <a class="nav-link" (click)="logout()">Logout</a>
                         </li>
                     </div>
                   </ul>

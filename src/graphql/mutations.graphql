@@ -7,6 +7,19 @@ mutation CreateUser($input: CreateUserInput!) {
     lastname
     bio
     profilepic
+    restaurant {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
   }
 }
 mutation UpdateUser($input: UpdateUserInput!) {
@@ -17,6 +30,19 @@ mutation UpdateUser($input: UpdateUserInput!) {
     lastname
     bio
     profilepic
+    restaurant {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
   }
 }
 mutation DeleteUser($input: DeleteUserInput!) {
@@ -27,5 +53,84 @@ mutation DeleteUser($input: DeleteUserInput!) {
     lastname
     bio
     profilepic
+    restaurant {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
+  }
+}
+mutation CreateRestaurant($input: CreateRestaurantInput!) {
+  createRestaurant(input: $input) {
+    addressLine
+    addressLine2
+    city
+    zipCode
+    state
+    country
+    testingEvent {
+      startTime
+      endTime
+      eventPicture
+    }
+  }
+}
+mutation UpdateRestaurant($input: UpdateRestaurantInput!) {
+  updateRestaurant(input: $input) {
+    addressLine
+    addressLine2
+    city
+    zipCode
+    state
+    country
+    testingEvent {
+      startTime
+      endTime
+      eventPicture
+    }
+  }
+}
+mutation DeleteRestaurant($input: DeleteRestaurantInput!) {
+  deleteRestaurant(input: $input) {
+    addressLine
+    addressLine2
+    city
+    zipCode
+    state
+    country
+    testingEvent {
+      startTime
+      endTime
+      eventPicture
+    }
+  }
+}
+mutation CreateTestingEvent($input: CreateTestingEventInput!) {
+  createTestingEvent(input: $input) {
+    startTime
+    endTime
+    eventPicture
+  }
+}
+mutation UpdateTestingEvent($input: UpdateTestingEventInput!) {
+  updateTestingEvent(input: $input) {
+    startTime
+    endTime
+    eventPicture
+  }
+}
+mutation DeleteTestingEvent($input: DeleteTestingEventInput!) {
+  deleteTestingEvent(input: $input) {
+    startTime
+    endTime
+    eventPicture
   }
 }
