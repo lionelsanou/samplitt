@@ -158,7 +158,7 @@ p {
   padding: 0 8px 0 0; }
 
 .slider {
-  background: url(../images/slider.jpg) no-repeat;
+  background: url(../images/newimage.jpeg) no-repeat;
   background-size: cover;
   min-height: 800px; }
   @media (max-width: 992px) {
@@ -251,7 +251,7 @@ p {
   padding-right: 10px; }
 
 .slider-link {
-  color: #909090;
+  color:white;
   margin: 45px 0 0;
   font-size: 19px; }
   @media (max-width: 480px) {
@@ -261,13 +261,13 @@ p {
       .slider-link span {
         display: block; } }
   .slider-link a {
-    color: #909090;
+    color: white;
     text-decoration: underline;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s; }
     .slider-link a:hover {
-      color: #fff; }
+      color:red; }
   .slider-link span {
     padding: 0 18px; }
 

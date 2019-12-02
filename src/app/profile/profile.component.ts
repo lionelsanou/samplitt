@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { APIService } from '../API.service';
 import { Auth } from 'aws-amplify';
 import { User } from '../models/user';
+import {Restaurant} from '../models/restaurant';
 import {Router} from '@angular/router';
 
 @Component({
@@ -74,12 +75,22 @@ export class ProfileComponent implements OnInit {
 ];
 
   user: User;
+  restaurant:Restaurant;
   userId: string;
   userName: string;
   userForm: FormGroup = new FormGroup({
     firstname: new FormControl(),
     lastname: new FormControl(),
-    profilepic: new FormControl()
+    profilepic: new FormControl(),
+    restaurantOwnwer:new FormControl('no')
+  });
+  restaurantForm:FormGroup=new FormGroup({
+    addressLine:new FormControl(),
+    addressLine2:new FormControl(),
+    city:new FormControl(),
+    state:new FormControl(),
+    zipCode:new FormControl(),
+    country:new FormControl()
   });
   userCreated: boolean;
   showPhoto: boolean;
@@ -103,7 +114,7 @@ export class ProfileComponent implements OnInit {
         this.userCreated = false;
         this.url = this.url + this.imgpath;
         this.userForm = new FormGroup({ firstname: new FormControl(), lastname: new FormControl(), profilepic: new FormControl(result.profilepic) });
-      
+        this.restaurantForm=new FormGroup({ addressLine: new FormControl(), addressLine1: new FormControl(), city: new FormControl(),state: new FormControl(),zipCode: new FormControl(),country: new FormControl() });
       } else {
         this.userCreated = true;
         this.showPhoto = true;
@@ -118,6 +129,11 @@ export class ProfileComponent implements OnInit {
         
         console.log("urlllllllllll " + JSON.stringify(this.url));
         this.userForm = new FormGroup({ firstname: new FormControl(result.firstname), lastname: new FormControl(result.lastname), profilepic: new FormControl(result.profilepic) });
+        this.restaurantForm=new FormGroup({ addressLine: new FormControl(result.restaurant.addressLine), addressLine2: new FormControl(result.restaurant.addressLine2), city: new FormControl(result.restaurant.city),state: new FormControl(result.restaurant.state),zipCode: new FormControl(result.restaurant.zipCode),country: new FormControl() });
+        if(result.restaurant.addressLine){
+          this.router.navigate(['/userprofile']);
+        }
+      
       }
     }).catch(err => console.log("there is an error on profile component " + err));
   }
@@ -126,10 +142,10 @@ export class ProfileComponent implements OnInit {
   }
   async submit() {
     console.log("the user input form is " + JSON.stringify(this.userForm.value));
-    this.user = { bio: null, firstname: this.userForm.get('firstname').value, lastname: this.userForm.get('lastname').value, email: this.userName, id: this.userId, profilepic: this.url };
+    this.user = { bio: null, firstname: this.userForm.get('firstname').value, lastname: this.userForm.get('lastname').value, email: this.userName, id: this.userId, profilepic: this.imgpath,restaurant:{addressLine:this.restaurantForm.get('addressLine').value,addressLine2:this.restaurantForm.get('addressLine2').value,city:this.restaurantForm.get('city').value,state:this.restaurantForm.get('state').value,zipCode:this.restaurantForm.get('zipCode').value,country:'US' }};
     console.log("the finale " + JSON.stringify(this.user));
     await this.api[this.getType()](this.user);
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/userprofile']);
 
   }
   editphoto(){
@@ -142,12 +158,20 @@ export class ProfileComponent implements OnInit {
 
   async onImageUploaded(e) {
     this.userForm.controls['profilepic'].setValue(e.key);
-    await this.api.UpdateUser({ id: this.userId, profilepic: this.userForm.get('profilepic').value });
+    await this.api[this.getType()]({ id: this.userId, profilepic: this.userForm.get('profilepic').value });
     this.url = "https://restauranttasting6934ebefb07b4df099a299bb6cfe6144-dev.s3.amazonaws.com/public/" + this.userForm.get('profilepic').value;
     console.log("the image uploaded is "+this.url);
     this.showPhoto = true;
     //this.router.navigate(['/profile']);
 
+  }
+
+  async saveAddress(){
+    this.user = { bio: null, firstname: this.userForm.get('firstname').value, lastname: this.userForm.get('lastname').value, email: this.userName, id: this.userId, profilepic: this.url,restaurant:{addressLine:this.restaurantForm.get('addressLine').value,addressLine2:this.restaurantForm.get('addressLine2').value,city:this.restaurantForm.get('city').value,state:this.restaurantForm.get('state').value,zipCode:this.restaurantForm.get('zipCode').value,country:'US' }};
+    //this.restaurant={addressLine:this.restaurantForm.get('addressLine1').value,addressLine2:this.restaurantForm.get('addressLine2').value,city:this.restaurantForm.get('city').value,state:this.restaurantForm.get('state').value,zipCode:this.restaurantForm.get('zipCode').value,country:'US' };
+    console.log("the address is "+JSON.stringify(this.restaurant));
+    await this.api.UpdateUser(this.user);
+    console.log("address info is saved successfully");
   }
 
 }

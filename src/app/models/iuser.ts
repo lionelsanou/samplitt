@@ -1,3 +1,5 @@
+import { Restaurant } from './restaurant';
+
 export class IUser{
     id:string;
     firstname:string;
@@ -5,4 +7,5 @@ export class IUser{
     email:string;
     profilepic:string;
     bio:string;
+    restaurant:Restaurant;
 }

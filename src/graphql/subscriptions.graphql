@@ -7,6 +7,19 @@ subscription OnCreateUser {
     lastname
     bio
     profilepic
+    restaurant {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
   }
 }
 subscription OnUpdateUser {
@@ -17,6 +30,19 @@ subscription OnUpdateUser {
     lastname
     bio
     profilepic
+    restaurant {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
   }
 }
 subscription OnDeleteUser {
@@ -27,5 +53,84 @@ subscription OnDeleteUser {
     lastname
     bio
     profilepic
+    restaurant {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
+  }
+}
+subscription OnCreateRestaurant {
+  onCreateRestaurant {
+    addressLine
+    addressLine2
+    city
+    zipCode
+    state
+    country
+    testingEvent {
+      startTime
+      endTime
+      eventPicture
+    }
+  }
+}
+subscription OnUpdateRestaurant {
+  onUpdateRestaurant {
+    addressLine
+    addressLine2
+    city
+    zipCode
+    state
+    country
+    testingEvent {
+      startTime
+      endTime
+      eventPicture
+    }
+  }
+}
+subscription OnDeleteRestaurant {
+  onDeleteRestaurant {
+    addressLine
+    addressLine2
+    city
+    zipCode
+    state
+    country
+    testingEvent {
+      startTime
+      endTime
+      eventPicture
+    }
+  }
+}
+subscription OnCreateTestingEvent {
+  onCreateTestingEvent {
+    startTime
+    endTime
+    eventPicture
+  }
+}
+subscription OnUpdateTestingEvent {
+  onUpdateTestingEvent {
+    startTime
+    endTime
+    eventPicture
+  }
+}
+subscription OnDeleteTestingEvent {
+  onDeleteTestingEvent {
+    startTime
+    endTime
+    eventPicture
   }
 }

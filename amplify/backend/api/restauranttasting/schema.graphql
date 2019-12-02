@@ -5,4 +5,21 @@ type User @model {
   lastname: String
   bio:String
   profilepic:String
+  restaurant:Restaurant
 }
+
+  type Restaurant @model{
+    addressLine:String
+    addressLine2:String
+    city:String
+    zipCode:String
+    state:String
+    country:String
+    testingEvent:TestingEvent
+  }
+
+  type TestingEvent @model{
+    startTime:String
+    endTime:String
+    eventPicture:String
+  }

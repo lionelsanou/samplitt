@@ -7,6 +7,19 @@ query GetUser($id: ID!) {
     lastname
     bio
     profilepic
+    restaurant {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
   }
 }
 query ListUsers(
@@ -22,6 +35,72 @@ query ListUsers(
       lastname
       bio
       profilepic
+      restaurant {
+        addressLine
+        addressLine2
+        city
+        zipCode
+        state
+        country
+      }
+    }
+    nextToken
+  }
+}
+query GetRestaurant($id: ID!) {
+  getRestaurant(id: $id) {
+    addressLine
+    addressLine2
+    city
+    zipCode
+    state
+    country
+    testingEvent {
+      startTime
+      endTime
+      eventPicture
+    }
+  }
+}
+query ListRestaurants(
+  $filter: ModelRestaurantFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      addressLine
+      addressLine2
+      city
+      zipCode
+      state
+      country
+      testingEvent {
+        startTime
+        endTime
+        eventPicture
+      }
+    }
+    nextToken
+  }
+}
+query GetTestingEvent($id: ID!) {
+  getTestingEvent(id: $id) {
+    startTime
+    endTime
+    eventPicture
+  }
+}
+query ListTestingEvents(
+  $filter: ModelTestingEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTestingEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      startTime
+      endTime
+      eventPicture
     }
     nextToken
   }
